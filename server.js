@@ -11,9 +11,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('.')); // 服务静态文件
 
+// 加载环境变量
+dotenv.config();
+
 // API配置
-const API_KEY = '0d7f36b9-8f6f-4966-9283-74da056adcd4';
-const API_URL = 'https://ark.cn-beijing.volces.com/api/v3/chat/completions';
+const API_KEY = process.env.API_KEY;
+const API_URL = process.env.API_URL;
 
 // 处理聊天请求
 app.post('/api/chat', async (req, res) => {
