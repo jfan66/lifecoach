@@ -55,7 +55,8 @@ app.post('/api/chat', async (req, res) => {
         });
 
         if (!response.ok) {
-            throw new Error(`API请求失败: ${response.status}`);
+            const errorData = await response.json();
+            throw new Error(`API请求失败: ${response.status} - ${errorData.error?.message || '未知错误'}`);
         }
 
         // 使用node-fetch的原生方法处理流式响应
